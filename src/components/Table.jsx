@@ -26,7 +26,12 @@ function Table() {
     const smokers = event.target.smokers.value;
     const jenis = event.target.cek;
 
-    let cekJenis = []
+    let cekJenis = [];
+    jenis.forEach((item) => {
+      if (item.checked) {
+        cekJenis.push(item.value);
+      }
+    });
     // const jenis =
     //   const newData = [...data];
     //   newData.push({
@@ -44,7 +49,7 @@ function Table() {
         umur: age,
         gender,
         perokok: smokers, //bool
-        jenis:
+        jenis: cekJenis,
       },
     ]);
   }
@@ -53,66 +58,104 @@ function Table() {
     <React.Fragment>
       <form onSubmit={saveData}>
         <div className="container-survey">
-          <div className="forms">
-            <div className="name">
-              <label className="name-input" htmlFor="names">
-                Nama
-              </label>
+          <div className="content-container">
+            <div className="forms">
+              <div className="name">
+                <label className="name-input" htmlFor="names">
+                  Nama
+                </label>
+              </div>
+              <div className="inputs">
+                <input
+                  type="text"
+                  name="names"
+                  id="names"
+                  className="edit-input"
+                />
+              </div>
             </div>
-            <div className="inputs">
-              <input
-                type="text"
-                name="names"
-                id="names"
-                className="edit-input"
-              />
+            <div className="forms">
+              <div className="name">
+                <label className="name-input" htmlFor="ages">
+                  Umur
+                </label>
+              </div>
+              <div className="inputs">
+                <input
+                  type="number"
+                  name="email"
+                  id="ages"
+                  className="edit-input"
+                />
+              </div>
             </div>
-          </div>
-          <div className="forms">
-            <div className="name">
-              <label className="name-input" htmlFor="ages">
-                Umur
-              </label>
+            <div className="forms">
+              <div className="name">
+                <label className="name-input" htmlFor="genders">
+                  Gender
+                </label>
+              </div>
+              <div className="inputs">
+                <div className="space-input">
+                  <input type="radio" name="genders" id="man" value={"ya"} />
+                  <label htmlFor="man">Laki-laki</label>
+                </div>
+                <div className="space-input">
+                  <input
+                    type="radio"
+                    name="genders"
+                    id="women"
+                    value={"tidak"}
+                  />
+                  <label htmlFor="women">Perempuan</label>
+                </div>
+              </div>
             </div>
-            <div className="inputs">
-              <input
-                type="email"
-                name="email"
-                id="ages"
-                className="edit-input"
-              />
+            <div className="forms">
+              <div className="name">
+                <label className="name-input" htmlFor="genders">
+                  Apakah anda perokok?
+                </label>
+              </div>
+              <div className="inputs1">
+                <div className="space-input">
+                  <input type="radio" name="smokers" id="ya" />
+                  <label htmlFor="ya">Ya</label>
+                </div>
+                <div className="space-input">
+                  <input type="radio" name="smokers" id="tidak" />
+                  <label htmlFor="tidak">Tidak</label>
+                </div>
+              </div>
             </div>
-          </div>
-          <div className="forms">
-            <div className="name">
-              <label className="name-input" htmlFor="genders">
-                Gender
-              </label>
+            <div className="Cigaret">
+              <div className="cigaret1">
+                <input
+                  type="checkbox"
+                  name="cek"
+                  id="cek1"
+                  value={"Sampoerna"}
+                />
+                <label htmlFor="cek1">Sampoerna</label>
+              </div>
+              <div className="cigaret1">
+                <input type="checkbox" name="cek" id="cek2" value={"Malboro"} />
+                <label htmlFor="cek2">Malboro</label>
+              </div>
+              <div className="cigaret1">
+                <input type="checkbox" name="cek" id="cek3" value={"Esse"} />
+                <label htmlFor="cek3">Esse</label>
+              </div>
+              <div className="cigaret1">
+                <input type="checkbox" name="cek" id="cek4" value={"Camel"} />
+                <label htmlFor="cek4">Camel</label>
+              </div>
             </div>
-            <div className="inputs">
-              <input type="radio" name="genders" id="man" value={"ya"} />
-              <label htmlFor="man">Laki-laki</label>
-              <input type="radio" name="genders" id="women" value={"tidak"} />
-              <label htmlFor="women">Perempuan</label>
+            <div className="button-survey">
+              <button type="submit" id="btn-survey">
+                Save
+              </button>
             </div>
-          </div>
-          <div className="forms">
-            <div className="name">
-              <label className="name-input" htmlFor="genders">
-                Apakah anda perokok?
-              </label>
-            </div>
-            <div className="inputs">
-              <input type="radio" name="smokers" id="ya" />
-              <label htmlFor="ya">Ya</label>
-              <input type="radio" name="smokers" id="tidak" />
-              <label htmlFor="tidak">Tidak</label>
-            </div>
-          </div>
-          <div className="button-survey">
-            <button type="submit" id="btn-survey">
-              Save
-            </button>
           </div>
         </div>
       </form>
@@ -123,7 +166,7 @@ function Table() {
             <th>Umur</th>
             <th>gender</th>
             <th>Perokok</th>
-            {/* <th>Jenis Rokok</th> */}
+            <th>Jenis Rokok</th>
           </tr>
         </thead>
         <tbody id="tbody">
@@ -134,7 +177,7 @@ function Table() {
                 <td>{item.umur}</td>
                 <td>{item.gender}</td>
                 <td>{item.perokok ? "Ya" : "Tidak"}</td>
-                {/* <td>{item.jenis[""]}</td> */}
+                <td>{item.jenis}</td>
               </tr>
             );
           })}

@@ -2,30 +2,39 @@ import React from "react";
 import google from "../assets/img/google.svg";
 import facebook from "../assets/img/facebook.svg";
 
-function Login() {
-  function login(event) {
+function Signup() {
+  function signup(event) {
     event.preventDefault();
+    const name = event.target.name.value;
     const email = event.target.email.value;
     const password = event.target.password.value;
-    if (email === "daffa@gmail.com" && password === "1234") {
-      window.alert("Login Success!");
+    if (name === "" && email === "" && password === "") {
+      window.alert("You must fill the form!");
     } else {
-      window.alert("Wrong email or password");
+      window.alert("Registration is successful, please log in");
     }
   }
-  //Component
   return (
     <div className="bg">
       <div className="container">
         <div className="content-login">
-          <form onSubmit={login}>
-            <div className="title">LOGIN</div>
+          <form onSubmit={signup}>
+            <div className="title">Sign Up</div>
+            <div className="email">
+              <input
+                type="text"
+                name="name"
+                id="name"
+                placeholder="Enter your name"
+                className="input-counter"
+              />
+            </div>
             <div className="email">
               <input
                 type="text"
                 name="email"
                 id="email"
-                placeholder="Email or username"
+                placeholder="Enter your email"
                 className="input-counter"
               />
             </div>
@@ -34,14 +43,14 @@ function Login() {
                 type="password"
                 name="password"
                 id="password"
-                placeholder="Password"
+                placeholder="Enter your password"
                 className="input-counter"
               />
             </div>
             <div className="forgot">Forgot Password?</div>
             <div className="submit">
               <button type="submit" id="btn-login">
-                Login
+                Sign Up
               </button>
             </div>
             <div className="or">OR</div>
@@ -59,4 +68,4 @@ function Login() {
     </div>
   );
 }
-export default Login;
+export default Signup;
